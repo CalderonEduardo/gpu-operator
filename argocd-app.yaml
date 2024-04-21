@@ -1,0 +1,24 @@
+# -- Deploy Argo CD Applications within this helm release
+# @default -- `[]` (See [values.yaml])
+## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/
+applications: 
+ argo-cd:
+  namespace: argocd
+  project: default
+  # ArgoCD v2.6 or later
+  sources:
+   - chart: gpu-operator
+     repoURL: https://helm.ngc.nvidia.com/nvidia  
+     targetRevision:  v23.9.2    
+     helm:
+      valueFiles:
+      - $values/values.yaml
+   - repoURL: https://github.com/CalderonEduardo/gpu-operator
+     targetRevision: main
+     ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nvidia-device-plugin
+  info:
+  - name: url
+    value: https://github.com/NVIDIA/gpu-operator/tree/master
