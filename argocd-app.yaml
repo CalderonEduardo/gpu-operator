@@ -2,7 +2,7 @@
 # @default -- `[]` (See [values.yaml])
 ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/
 applications: 
- argo-cd:
+ gpu-operator:
   namespace: argocd
   project: default
   # ArgoCD v2.6 or later
